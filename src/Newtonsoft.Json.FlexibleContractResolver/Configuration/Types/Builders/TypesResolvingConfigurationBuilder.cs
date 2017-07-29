@@ -14,9 +14,9 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Builders
         public TypesResolvingConfigurationBuilder Type<T>(Action<TypeResolvingConfigurationBuilder<T>> typeConfig)
         {
             var type = typeof(T);
-            var typeResolvingConfiguration = ContractConfiguration.TypesResolving.HasTypeResolvingConfiguration(type)
-                ? ContractConfiguration.TypesResolving.GetTypeResolvingConfiguration(type)
-                : ContractConfiguration.TypesResolving.CreateTypeResolvingConfiguration(type);
+            var typeResolvingConfiguration = ContractConfiguration.TypesResolving.HasConfigurationForEntity(type)
+                ? ContractConfiguration.TypesResolving.GetConfigurationForEntity(type)
+                : ContractConfiguration.TypesResolving.CreateConfigurationForEntity(type);
             typeConfig(new TypeResolvingConfigurationBuilder<T>(typeResolvingConfiguration));
             return this;
         }

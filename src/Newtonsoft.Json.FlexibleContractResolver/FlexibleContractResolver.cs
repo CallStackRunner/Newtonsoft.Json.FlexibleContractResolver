@@ -28,7 +28,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver
                 return property;
             }
 
-            var typeResolvingConfiguration = Configuration.TypesResolving.GetTypeResolvingConfiguration(member.DeclaringType);
+            var typeResolvingConfiguration = Configuration.TypesResolving.GetConfigurationForEntity(member.DeclaringType);
             if (typeResolvingConfiguration != null)
             {
                 MemberTypeSupportFacade.MemberTypeConfigurationHandlingRouter

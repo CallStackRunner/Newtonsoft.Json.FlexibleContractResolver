@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json.FlexibleContractResolver.Generic;
 
 namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Generic
 {
@@ -6,36 +6,31 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.G
     /// Base type for member type resolving configuration
     /// </summary>
     /// <typeparam name="TMemberConfiguration">member configuration type</typeparam>
-    public abstract class MemberTypeResolvingConfigrationBase<TMemberConfiguration> : IMemberTypeResolvingConfigration<TMemberConfiguration>
+    public abstract class MemberTypeResolvingConfigrationBase<TMemberConfiguration> : EntityConfigurationsContainerBase<string, TMemberConfiguration>,
+        IMemberTypeResolvingConfigration<TMemberConfiguration>
         where TMemberConfiguration : IMemberConfiguration, new()
     {
-        private readonly IDictionary<string, TMemberConfiguration> _memberTypeNamesConfigurationsMapping
-            = new Dictionary<string, TMemberConfiguration>();
-
         /// <inheritdoc />
         public bool HasMemberConfiguration(string memberName)
         {
-            return _memberTypeNamesConfigurationsMapping.ContainsKey(memberName);
+            return base.HasConfigurationForEntity(memberName);
         }
 
         /// <inheritdoc />
         public TMemberConfiguration GetMemberConfiguration(string memberName)
         {
-            _memberTypeNamesConfigurationsMapping.TryGetValue(memberName, out TMemberConfiguration configuration);
-            return configuration;
+            return base.GetConfigurationForEntity(memberName);
         }
 
         /// <inheritdoc />
         public TMemberConfiguration CreateMemberConfiguration(string memberName)
         {
-            if (this.HasMemberConfiguration(memberName))
-            {
-                return GetMemberConfiguration(memberName);
-            }
+            return base.CreateConfigurationForEntity(memberName);
+        }
 
-            var memberTypeResolvingConfiguration = new TMemberConfiguration() { MemberName = memberName };
-            _memberTypeNamesConfigurationsMapping[memberName] = memberTypeResolvingConfiguration;
-            return memberTypeResolvingConfiguration;
+        protected override TMemberConfiguration CreateConfigurationFromEntity(string entity)
+        {
+            return new TMemberConfiguration { MemberName = entity };
         }
     }
 }

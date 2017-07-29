@@ -60,6 +60,8 @@
     <Compile Include="Configuration\Types\Builders\TypeResolvingConfigurationBuilder.cs" />
     <Compile Include="Configuration\Types\TypesResolvingConfiguration.cs" />
     <Compile Include="FlexibleContractResolver.cs" />
+    <Compile Include="Generic\EntityConfigurationsContainerBase.cs" />
+    <Compile Include="Generic\IEntityConfigurationsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
