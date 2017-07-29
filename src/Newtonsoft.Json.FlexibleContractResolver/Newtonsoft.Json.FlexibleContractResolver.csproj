@@ -37,7 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Configuration\Members\MemberConfigurationFactory.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberConfigurationAccessController.cs" />
     <Compile Include="Infrastructure\Configuration\Members\MemberTypeConfigurationHandlingRouter.cs" />
     <Compile Include="Infrastructure\Configuration\Members\MemberTypeSupportConsultant.cs" />
     <Compile Include="Configuration\ContractConfiguration.cs" />
@@ -47,7 +47,6 @@
     <Compile Include="Configuration\Types\Members\Handlers\FieldConfigurationHandler.cs" />
     <Compile Include="Configuration\Types\Members\Handlers\Generic\IMemberConfigurationHandler.cs" />
     <Compile Include="Configuration\Types\Members\Handlers\Generic\MemberConfigurationHandlerBase.cs" />
-    <Compile Include="Configuration\Types\Members\Handlers\MemberTypeResolvingConfigrationFactoryMethod.cs" />
     <Compile Include="Configuration\Types\Members\Handlers\PropertyConfigurationHandler.cs" />
     <Compile Include="Configuration\Types\Members\Generic\IMemberConfiguration.cs" />
     <Compile Include="Configuration\Types\Members\Generic\IMemberTypeResolvingConfigration.cs" />

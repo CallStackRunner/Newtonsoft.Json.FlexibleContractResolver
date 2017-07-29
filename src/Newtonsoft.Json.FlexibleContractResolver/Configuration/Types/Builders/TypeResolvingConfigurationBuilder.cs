@@ -7,7 +7,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Builders
     public class TypeResolvingConfigurationBuilder<T>
     {
         private readonly MemberTypeSupportConsultant _memberTypeSupportConsultant = new MemberTypeSupportConsultant();
-        private readonly MemberConfigurationFactory _memberConfigurationFactory = new MemberConfigurationFactory();
+        private readonly MemberConfigurationAccessController _memberConfigurationFactory = new MemberConfigurationAccessController();
 
         private TypeResolvingConfiguration Configuration { get; }
 

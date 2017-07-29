@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members;
+using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Generic;
 
 namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types
 {
@@ -16,12 +17,12 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types
         /// <summary>
         /// Gets or sets properties resolving configuration
         /// </summary>
-        public PropertiesResolvingConfiguration Properties { get; set; } = new PropertiesResolvingConfiguration();
+        public IMemberTypeResolvingConfigration<PropertyResolvingConfiguration> Properties { get; set; } = new PropertiesResolvingConfiguration();
 
         /// <summary>
         /// Gets or sets fields resolving configuration
         /// </summary>
-        public FieldsResolvingConfiguration Fields { get; set; } = new FieldsResolvingConfiguration();
+        public IMemberTypeResolvingConfigration<FieldResolvingConfiguration> Fields { get; set; } = new FieldsResolvingConfiguration();
         
         public TypeResolvingConfiguration(Type type)
         {

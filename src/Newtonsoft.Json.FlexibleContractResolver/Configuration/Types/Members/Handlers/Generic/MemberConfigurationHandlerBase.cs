@@ -1,5 +1,6 @@
 using System.Reflection;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Generic;
+using Newtonsoft.Json.FlexibleContractResolver.Infrastructure.Configuration.Members;
 using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Handlers.Generic
@@ -8,19 +9,21 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.H
     /// A base class for member types configuration handlers
     /// </summary>
     /// <typeparam name="TMemberConfiguration"></typeparam>
-    public abstract class MemberConfigurationHandlerBase<TMemberConfiguration> : IMemberConfigurationHandler<TMemberConfiguration> 
-        where TMemberConfiguration : IMemberConfiguration, new()
+    public abstract class MemberConfigurationHandlerBase<TMemberConfiguration> : IMemberConfigurationHandler
+        where TMemberConfiguration : class, IMemberConfiguration, new()
     {
-        /// <inheritdoc />
-        public abstract MemberTypeResolvingConfigrationFactoryMethod<TMemberConfiguration> MemberTypeResolvingConfigrationFactoryMethod { get; }
+        private readonly MemberConfigurationAccessController _memberConfigurationAccessController = new MemberConfigurationAccessController();
 
         /// <inheritdoc />
         void IMemberConfigurationHandler.HandleMemberConfiguration(MemberInfo member, JsonProperty property, TypeResolvingConfiguration configuration)
         {
-            var config = MemberTypeResolvingConfigrationFactoryMethod.Invoke(configuration);
-            if (config.HasMemberConfiguration(member.Name))
+            if (_memberConfigurationAccessController.HasMemberConfigurationType(member.Name, 
+                member.MemberType, 
+                configuration))
             {
-                var memberConfiguration = config.GetMemberConfiguration(member.Name);
+                var memberConfiguration = _memberConfigurationAccessController.GetMemberConfigurationType(member.Name, 
+                    member.MemberType,
+                    configuration);
                 property.PropertyName = memberConfiguration.JsonBinding;
                 if (memberConfiguration.Ignored)
                 {
@@ -29,7 +32,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.H
                     property.PropertyName = string.Empty;
                 }
 
-                HandleMemberConfiguration(member, property, memberConfiguration);
+                HandleMemberConfiguration(member, property, memberConfiguration as TMemberConfiguration);
             }
         }
 

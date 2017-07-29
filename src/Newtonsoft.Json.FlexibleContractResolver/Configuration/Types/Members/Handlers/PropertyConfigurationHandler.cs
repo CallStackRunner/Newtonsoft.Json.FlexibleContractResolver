@@ -6,9 +6,6 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.H
 {
     public class PropertyConfigurationHandler : MemberConfigurationHandlerBase<PropertyResolvingConfiguration>
     {
-        public override MemberTypeResolvingConfigrationFactoryMethod<PropertyResolvingConfiguration> MemberTypeResolvingConfigrationFactoryMethod
-            => (config) => config.Properties;
-
         public override void HandleMemberConfiguration(MemberInfo member, JsonProperty property, PropertyResolvingConfiguration configuration)
         {
         }
