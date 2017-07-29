@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Deserialization\MembersDeserializationTests.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberTypeConfigurationHandlingRouterTests.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberConfigurationAccessControllerTests.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberTypesRelatedTestsBase.cs" />
     <Compile Include="JsonRelatedTestsBase.cs" />
     <Compile Include="Serialization\MembersSerializationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
