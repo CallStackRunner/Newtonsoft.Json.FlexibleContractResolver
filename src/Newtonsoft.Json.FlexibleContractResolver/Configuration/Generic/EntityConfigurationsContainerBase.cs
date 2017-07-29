@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Newtonsoft.Json.FlexibleContractResolver.Generic
+namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Generic
 {
     /// <inheritdoc />
     public abstract class EntityConfigurationsContainerBase<TEntity, TConfiguration> : IEntityConfigurationsContainer<TEntity, TConfiguration>

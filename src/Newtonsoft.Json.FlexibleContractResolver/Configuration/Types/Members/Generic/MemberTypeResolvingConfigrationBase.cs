@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.FlexibleContractResolver.Generic;
+﻿using Newtonsoft.Json.FlexibleContractResolver.Configuration.Generic;
 
 namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Generic
 {

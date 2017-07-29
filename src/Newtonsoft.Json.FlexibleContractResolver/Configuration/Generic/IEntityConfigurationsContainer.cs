@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Newtonsoft.Json.FlexibleContractResolver.Generic
+﻿namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Generic
 {
     /// <summary>
     /// A container for entity configurations
