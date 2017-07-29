@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration;
-using Newtonsoft.Json.FlexibleContractResolver.Configuration.Infrastructure;
+using Newtonsoft.Json.FlexibleContractResolver.Infrastructure.Configuration.Members;
 using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.FlexibleContractResolver
@@ -10,19 +10,20 @@ namespace Newtonsoft.Json.FlexibleContractResolver
     /// </summary>
     public class FlexibleContractResolver : DefaultContractResolver
     {
-        private MemberTypeSupportFacade MemberTypeSupportFacade { get; }
+        private readonly MemberTypeSupportConsultant _memberTypeSupportConsultant = new MemberTypeSupportConsultant();
+        private readonly MemberTypeConfigurationHandlingRouter _memberTypeConfigurationHandlingRouter = new MemberTypeConfigurationHandlingRouter();
+
         public ContractConfiguration Configuration { get; set; }
 
         public FlexibleContractResolver(ContractConfiguration configuration)
         {
             Configuration = configuration;
-            MemberTypeSupportFacade = new MemberTypeSupportFacade();
         }
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
             var property = base.CreateProperty(member, memberSerialization);
-            if (!MemberTypeSupportFacade.MemberTypeSupportConsultant.IsMemberTypeSupported(member.MemberType))
+            if (!_memberTypeSupportConsultant.IsMemberTypeSupported(member.MemberType))
             {
                 // nothing to do here
                 return property;
@@ -31,7 +32,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver
             var typeResolvingConfiguration = Configuration.TypesResolving.GetConfigurationForEntity(member.DeclaringType);
             if (typeResolvingConfiguration != null)
             {
-                MemberTypeSupportFacade.MemberTypeConfigurationHandlingRouter
+                _memberTypeConfigurationHandlingRouter
                     .GetMemberConfigurationHandlerByMemberType(member.MemberType)
                     .HandleMemberConfiguration(member, property, typeResolvingConfiguration);
             }

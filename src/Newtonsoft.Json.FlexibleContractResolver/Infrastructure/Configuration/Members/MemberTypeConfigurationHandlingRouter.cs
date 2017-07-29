@@ -4,7 +4,7 @@ using System.Reflection;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Handlers;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Handlers.Generic;
 
-namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Infrastructure
+namespace Newtonsoft.Json.FlexibleContractResolver.Infrastructure.Configuration.Members
 {
     public class MemberTypeConfigurationHandlingRouter
     {

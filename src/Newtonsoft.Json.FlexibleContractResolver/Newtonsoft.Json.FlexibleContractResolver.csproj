@@ -37,10 +37,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Infrastructure\MemberConfigurationFactory.cs" />
-    <Compile Include="Configuration\Infrastructure\MemberTypeConfigurationHandlingRouter.cs" />
-    <Compile Include="Configuration\Infrastructure\MemberTypeSupportConsultant.cs" />
-    <Compile Include="Configuration\Infrastructure\MemberTypeSupportFacade.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberConfigurationFactory.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberTypeConfigurationHandlingRouter.cs" />
+    <Compile Include="Infrastructure\Configuration\Members\MemberTypeSupportConsultant.cs" />
     <Compile Include="Configuration\ContractConfiguration.cs" />
     <Compile Include="Configuration\Types\Builders\TypesResolvingConfigurationBuilder.cs" />
     <Compile Include="Configuration\Types\Members\FieldResolvingConfiguration.cs" />
@@ -67,5 +66,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

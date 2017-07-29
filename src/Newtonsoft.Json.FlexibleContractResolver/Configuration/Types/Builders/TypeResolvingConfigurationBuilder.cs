@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Newtonsoft.Json.FlexibleContractResolver.Configuration.Infrastructure;
+using Newtonsoft.Json.FlexibleContractResolver.Infrastructure.Configuration.Members;
 
 namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Builders
 {
     public class TypeResolvingConfigurationBuilder<T>
     {
+        private readonly MemberTypeSupportConsultant _memberTypeSupportConsultant = new MemberTypeSupportConsultant();
+        private readonly MemberConfigurationFactory _memberConfigurationFactory = new MemberConfigurationFactory();
+
         private TypeResolvingConfiguration Configuration { get; }
-        private MemberTypeSupportFacade MemberTypeSupportFacade { get; }
 
         public TypeResolvingConfigurationBuilder(TypeResolvingConfiguration configuration)
         {
             Configuration = configuration;
-            MemberTypeSupportFacade = new MemberTypeSupportFacade();
         }
 
         public MemberConfigurationBuilder Member<TMember>(Expression<Func<T, TMember>> member)
@@ -24,13 +25,13 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Builders
 
             var expression = member.Body as MemberExpression;
             if (expression == null 
-                || !MemberTypeSupportFacade.MemberTypeSupportConsultant.IsMemberTypeSupported(expression.Member.MemberType))
+                || !_memberTypeSupportConsultant.IsMemberTypeSupported(expression.Member.MemberType))
             {
                 // expression contains access to not [supported] member
                 throw new ArgumentException("only supported member returning expressions are allowed to pass in \"Member\" method");
             }
 
-            return new MemberConfigurationBuilder(MemberTypeSupportFacade.MemberConfigurationFactory.CreateMemberConfiguration(expression.Member.Name, 
+            return new MemberConfigurationBuilder(_memberConfigurationFactory.CreateMemberConfigurationForType(expression.Member.Name, 
                 expression.Member.MemberType, 
                 Configuration));
         }

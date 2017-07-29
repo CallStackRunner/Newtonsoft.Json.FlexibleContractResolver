@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types;
-using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Generic;
 
-namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Infrastructure
+namespace Newtonsoft.Json.FlexibleContractResolver.Infrastructure.Configuration.Members
 {
     public class MemberConfigurationFactory
     {
@@ -13,7 +12,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Infrastructure
             = new Dictionary<MemberTypes, Func<TypeResolvingConfiguration, string, IMemberConfiguration>>()
             {
                 { MemberTypes.Field, (trc, name) => trc.Fields.CreateMemberConfiguration(name) },
-                {MemberTypes.Property, (trc, name) => trc.Properties.CreateMemberConfiguration(name) }
+                { MemberTypes.Property, (trc, name) => trc.Properties.CreateMemberConfiguration(name) }
             };
         private MemberTypeSupportConsultant MemberTypeSupportConsultant { get; }
 
@@ -22,7 +21,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Infrastructure
             MemberTypeSupportConsultant = new MemberTypeSupportConsultant();
         }
 
-        public IMemberConfiguration CreateMemberConfiguration(string memberName, MemberTypes memberType, TypeResolvingConfiguration typeResolvingConfiguration)
+        public IMemberConfiguration CreateMemberConfigurationForType(string memberName, MemberTypes memberType, TypeResolvingConfiguration typeResolvingConfiguration)
         {
             if (!MemberTypeSupportConsultant.IsMemberTypeSupported(memberType))
             {
