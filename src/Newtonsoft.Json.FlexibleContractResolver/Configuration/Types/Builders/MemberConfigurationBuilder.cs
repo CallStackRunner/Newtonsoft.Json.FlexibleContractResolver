@@ -1,4 +1,3 @@
-using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members;
 using Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.Generic;
 
 namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Builders
@@ -12,16 +11,9 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Builders
             Configuration = configuration;
         }
 
-        public MemberConfigurationBuilder HasJsonBinding(string jsonBinding)
-        {
-            Configuration.JsonBinding = jsonBinding;
-            return this;
-        }
+        public MemberJsonPropertyNameConfigurationBuilder BoundToJsonProperty 
+            => new MemberJsonPropertyNameConfigurationBuilder(Configuration.JsonPropertyName);
 
-        public MemberConfigurationBuilder ShouldBeIgnored()
-        {
-            Configuration.Ignored = true;
-            return this;
-        }
+        public MemberConfigurationBuilderShouldBe ShouldBe => new MemberConfigurationBuilderShouldBe(Configuration);
     }
 }

@@ -8,7 +8,7 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members
     public class PropertyResolvingConfiguration : IMemberConfiguration
     {
         public string MemberName { get; set; }
-        public string JsonBinding { get; set; }
-        public bool Ignored { get; set; }
+        public MemberJsonPropertyNameConfiguration JsonPropertyName { get; set; }
+        public MemberIgnoringConfiguration Ignoring { get; set; }
     }
 }

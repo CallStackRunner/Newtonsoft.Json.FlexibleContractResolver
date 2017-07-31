@@ -30,7 +30,13 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.G
 
         protected override TMemberConfiguration CreateConfigurationFromEntity(string entity)
         {
-            return new TMemberConfiguration { MemberName = entity };
+            var configuration = new TMemberConfiguration
+            {
+                MemberName = entity,
+                Ignoring = new MemberIgnoringConfiguration()
+            };
+            configuration.JsonPropertyName = new MemberJsonPropertyNameConfiguration(configuration);
+            return configuration;
         }
     }
 }

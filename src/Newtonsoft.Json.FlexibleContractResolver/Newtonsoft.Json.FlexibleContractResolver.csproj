@@ -37,6 +37,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Types\Builders\MemberConfigurationBuilderShouldBe.cs" />
+    <Compile Include="Configuration\Types\Builders\MemberIgnoringConfigurationBuilder.cs" />
+    <Compile Include="Configuration\Types\Builders\MemberJsonPropertyNameConfigurationBuilder.cs" />
     <Compile Include="Infrastructure\Configuration\Members\MemberConfigurationAccessController.cs" />
     <Compile Include="Infrastructure\Configuration\Members\MemberTypeConfigurationHandlingRouter.cs" />
     <Compile Include="Infrastructure\Configuration\Members\MemberTypeSupportConsultant.cs" />

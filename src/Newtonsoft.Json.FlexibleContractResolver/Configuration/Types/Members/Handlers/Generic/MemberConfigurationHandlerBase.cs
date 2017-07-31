@@ -24,8 +24,8 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.H
                 var memberConfiguration = _memberConfigurationAccessController.GetMemberConfigurationType(member.Name, 
                     member.MemberType,
                     configuration);
-                property.PropertyName = memberConfiguration.JsonBinding;
-                if (memberConfiguration.Ignored)
+                property.PropertyName = memberConfiguration.JsonPropertyName.Name;
+                if (memberConfiguration.Ignoring.ShouldBeIgnored)
                 {
                     // PropertyName cannot be null
                     property.Ignored = true;
@@ -35,6 +35,17 @@ namespace Newtonsoft.Json.FlexibleContractResolver.Configuration.Types.Members.H
                 HandleMemberConfiguration(member, property, memberConfiguration as TMemberConfiguration);
             }
         }
+
+        //private void HandleIgnoringConfiguration(MemberIgnoringConfiguration ignoringConfiguration, JsonProperty property)
+        //{
+        //    if (ignoringConfiguration.ShouldBeIgnored)
+        //    {
+        //        if (ignoringConfiguration.WhenShouldBeIgnored != null)
+        //        {
+        //            ignoringConfiguration.WhenShouldBeIgnored.DynamicInvoke(property.)
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Handling particular member type configuration
